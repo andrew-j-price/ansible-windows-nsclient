@@ -16,13 +16,13 @@
     src: nsclient.j2 
     dest: C:\Program Files\NSClient++\nsclient.ini
 
-- name: restart service
-  win_service:
-    name: nscp
-    state: restarted
-
-- name: ensure service runs on startup
+- name: enable service on startup
   win_service:
     name: nscp
     start_mode: auto
     state: started
+
+- name: restart service
+  win_service:
+    name: nscp
+    state: restarted
