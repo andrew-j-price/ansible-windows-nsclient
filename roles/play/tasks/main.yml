@@ -1,0 +1,28 @@
+---
+
+- name: create directory
+  win_file: path=C:\{{ software_folder }}\ state=directory
+
+- name: copy file
+  win_copy:
+    src: "{{ software_package }}"
+    dest: C:\{{ software_folder }}\{{ software_package }}
+
+- name: install msi
+  win_msi: path=C:\{{ software_folder }}\{{ software_package }}
+
+- name: copy config file
+  win_template: 
+    src: nsclient.j2 
+    dest: C:\Program Files\NSClient++\nsclient.ini
+
+- name: restart service
+  win_service:
+    name: nscp
+    state: restarted
+
+- name: ensure service runs on startup
+  win_service:
+    name: nscp
+    start_mode: auto
+    state: started

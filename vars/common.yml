@@ -1,0 +1,11 @@
+---
+ansible_ssh_user: automate
+ansible_ssh_pass: Password123
+ansible_ssh_port: 5985
+ansible_connection: winrm
+
+software_folder: temp
+software_package: NSCP-0.4.3.143-x64.msi
+
+nsclient_allowed_hosts: 192.168.56.222,192.168.56.201
+nsclient_password: Password123*$
